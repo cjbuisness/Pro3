@@ -6,7 +6,7 @@ This is what I have thus far.
 
 
 The output is as follows:
-_________________________________________
+
 In-order traversal of Reserved Words BST:
 abstract
 assert 
