@@ -1,0 +1,20 @@
+package iDK;
+
+/**
+ * Class that holds the content of the program
+ * Used for testing the functionality of the parser.
+ * "Content" stores the txt contents, and is set through the constructor
+ */
+public class JavaProgramToBeTested {
+    private final String content;
+
+    public JavaProgramToBeTested(String content) {
+        this.content = content;
+	//constructs instance of class, with given content
+    }
+
+    public String getContent() {
+        return content;
+	//returns content
+    }
+}
