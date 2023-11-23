@@ -8,8 +8,11 @@ This is what I have thus far.
 The output is as follows:
 
 In-order traversal of Reserved Words BST:
+
 *abstract
-*assert 
+
+*assert
+
 boolean
 break
 byte
