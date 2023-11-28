@@ -1,79 +1,86 @@
 package iDK;
 
-/**
- * Each node contains data from reserved words or identfiers
- * Class has methods to return data, set data, return left and right children, return heigh, return # of nodes, and to check if the node is a leaf, or has children
- */
 public class BinaryNode<T> {
     private T data;
     private BinaryNode<T> leftChild;
     private BinaryNode<T> rightChild;
-	// a node in a binary tree used for the Parser
+    private int height; 
 
     public BinaryNode(T data) {
+	// creates a BinaryNode, with left and right initialized to null
         this(data, null, null);
-	// constructs a binaryNode node with no children
     }
 
     public BinaryNode(T data, BinaryNode<T> leftChild, BinaryNode<T> rightChild) {
         this.data = data;
         this.leftChild = leftChild;
         this.rightChild = rightChild;
-	// creates BinaryNode with references to left and right childrens
+        this.height = 1;
     }
 
     public T getData() {
+	// returns data of node
         return data;
     }
-	//returns data in node
 
     public void setData(T data) {
-        this.data = data; 
-	//sets the data of the node
+	// sets data in node
+        this.data = data;
     }
 
     public BinaryNode<T> getLeftChild() {
         return leftChild;
-	//returns left child node
     }
 
     public void setLeftChild(BinaryNode<T> leftChild) {
         this.leftChild = leftChild;
-	//sets left child node
+	// sets left child, updates height
+        updateHeight();
     }
 
     public BinaryNode<T> getRightChild() {
         return rightChild;
-	//returns right child node
     }
 
     public void setRightChild(BinaryNode<T> rightChild) {
-        this.rightChild = rightChild; 
-	//sets the rght child node
+        this.rightChild = rightChild;
+        updateHeight();
     }
 
     public int getHeight() {
-        return isLeaf() ? 1 : Math.max(leftChild != null ? leftChild.getHeight() : 0, rightChild != null ? rightChild.getHeight() : 0) + 1;
-	//returns height of node
+        return height;
     }
 
     public int getNumberOfNodes() {
-        return (leftChild != null ? leftChild.getNumberOfNodes() : 0) + (rightChild != null ? rightChild.getNumberOfNodes() : 0) + 1;
-	//returns number of nodes in subtree, at the current node
+        return (leftChild != null ? leftChild.getNumberOfNodes() : 0) +
+               (rightChild != null ? rightChild.getNumberOfNodes() : 0) + 1;
+	// returns # of nodes in subtree of current node
     }
 
     public boolean isLeaf() {
-        return leftChild == null && rightChild == null; 
-	//checks if node s a leaf (has no children), returns true or false
+	// checks if node has children
+        return leftChild == null && rightChild == null;
     }
 
     public boolean hasLeftChild() {
-        return leftChild != null; 
-	//checks if node has left child, returns true or false
+	// checks if node has left child
+        return leftChild != null;
     }
 
     public boolean hasRightChild() {
-        return rightChild != null; 
-	//checks if node has a right child, returns true or false
+        return rightChild != null;
+    }
+
+    public int getLeftChildHeight() {
+        return (leftChild != null) ? leftChild.getHeight() : 0;
+    }
+
+    public int getRightChildHeight() {
+        return (rightChild != null) ? rightChild.getHeight() : 0;
+    }
+
+    private void updateHeight() {
+	// updates height based on height of children
+        height = Math.max(getLeftChildHeight(), getRightChildHeight()) + 1;
     }
 }
